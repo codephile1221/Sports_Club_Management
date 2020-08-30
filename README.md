@@ -5,7 +5,9 @@ Bear with me I'm just student and my code might not be the best or efficent but 
 
 # Certain requiremnets before running the program
 Install the the Python Library "Tabulate" in the Python Scripts directory using the command ```pip install tabulate```
+
 Copy the folder **_projectmodules** to the Python Lib directory
+
 I have provided a Member, Facility and a Fees file , make sure to keep it in the same folder as **Sports Club Management.py**
 
 
