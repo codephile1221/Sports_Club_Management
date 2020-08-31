@@ -4,6 +4,11 @@ from _projectmodules import project
 ch=1
 print('''If New member is being registered, its recommended to
 to go through the facility file to see the available facilities ''')
+print()
+print('''New members are expected to pay the first year's fees in advance.
+hence the date of enrollement to sports club is also taken as the date of
+Payement of Fees''' )
+print()
 while ch!=0:
     print("(1) Access Member File")
     print("(2) Access Fees File")
