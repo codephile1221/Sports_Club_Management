@@ -110,22 +110,31 @@ def display():
             print(tabulate(list1,headers=['Code','Name','Date','Address','Phone Number','Fc1','Fc2','Fc3'], tablefmt='github'))
 def deleterec():
     with open("Member File.dat","rb") as recdel:
+        feesdel=open("Fees file.dat","rb")
         found=0
+        feesnew=[]
         recnew=[]
         code=input("Enter code of Member to be deleted or to cancel Enter 0 ")
         if code=='0':
             return None
         try:
             while True:
+                fees=pickle.load(feesdel)
                 rec=pickle.load(recdel)
                 if code!=rec[0]:
                     recnew.append(rec)
                 else:
                     found=1
+                if code!=fees[0]:
+                    feesnew.append(fees)
         except:
+            feesdel.close()
             with open("Member File.dat","wb") as recdel:
+                feesdel=open("Fees file.dat","wb")
                 for k in recnew:
                     pickle.dump(k,recdel)
+                for j in feesnew:
+                    pickle.dump(j,feesdel)
         if found==0:
             print("Member code not found, exiting function")
         else:
@@ -142,15 +151,14 @@ def newmember():
                 n=int(input("Enter Number of New Members"))
                 for loop in range(n):
                     code=codegen(recnew)
-                    print(code)
+                    print("Your Unique Member code=",code)
                     name=namevalid()
-                    print(name)
                     doj=datevalidation()
-                    print(doj)
                     address=input("Enter Adress")
                     phone=int(input("Enter Phone Number"))
+                    print('''An annual membership fee is Rs. 10,000 and for every 
+facility (sports) selected a member has to pay Rs. 2,000 annually''')
                     fc1,fc2,fc3=facilityvalid()
-                    print(fc1,fc2,fc3)
                     newrec=[code,name,doj,address,phone,fc1,fc2,fc3]
                     pickle.dump(newrec,member)
                     feesnew(doj,fc1,fc2,fc3,code)
